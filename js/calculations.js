@@ -14,3 +14,8 @@ function initialCalc() {
     document.body.appendChild(sensButton2);  
 
 }
+
+function secondCalc() {
+    var newSensL = newSensL * .5;
+    sensButton1text.nodeValue = newSensL;
+} 
