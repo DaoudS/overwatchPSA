@@ -1,31 +1,103 @@
-function validateInput(){
-    var x = document.getElementById("SensValue1").value;
+var funcCounter = 0;
+
+function validateInput() {
+    var x;
+
+    x = document.getElementById("sensInput").value;
 
     if (x == "" || x <= 0) {
         return false;
     } else {
-        initialCalc();
+        if (funcCounter == 1) {
+            return false;
+        } else {
+            funcCounter = 1;
+            setup();
+            
+        }
     }
 }
 
-function initialCalc() {
-    var originalSens = document.getElementById("SensValue1").value;
+function setup() {
 
-    var newSensL = originalSens * .5;
-    var sensButton1 = document.createElement("BUTTON");
-    var sensButton1text = document.createTextNode(newSensL);
-    sensButton1.appendChild(sensButton1text);
-    document.getElementById("buttonSpot").appendChild(sensButton1);
+    originalSens = document.getElementById("sensInput").value;
+    buttonOneClicked = false;
+    buttonTwoClicked = false;
 
-    var newSensH = originalSens * 1.5;
-    var sensButton2 = document.createElement("BUTTON");
-    var sensButton2text = document.createTextNode(newSensH);
-    sensButton2.appendChild(sensButton2text);
-    document.getElementById("buttonSpot").appendChild(sensButton2);  
+    lowSens = originalSens * .5;
+    highSens = originalSens * 1.5;
 
+    buttonOne = document.createElement("BUTTON");
+    buttonTwo = document.createElement("BUTTON");
+
+    buttonOneText = document.createTextNode(lowSens);
+    buttonTwoText = document.createTextNode(highSens);
+
+    buttonOne.appendChild(buttonOneText);
+    buttonTwo.appendChild(buttonTwoText);
+
+    document.getElementById("buttonSpot").appendChild(buttonOne);
+    document.getElementById("buttonSpot").appendChild(buttonTwo);
+
+    onClickCheck();
+    
 }
 
-function calcButtton1() {
-    var newSensL = newSensL * .5;
-    sensButton1text.nodeValue = newSensL;
-} 
+function onClickCheck() {
+    loopCounter = 0;
+    buttonOne.onclick = buttonOneClickCheck;
+    buttonTwo.onclick = buttonTwoClickCheck; 
+}
+function buttonOneClickCheck() {
+    if (buttonTwoClicked == true){
+        return false;
+    } else {
+        buttonOneClicked = true;
+        buttonCheck();
+        buttonOneClicked = false;
+    }
+}
+
+function buttonTwoClickCheck() {
+    if (buttonOneClicked == true) {
+        return false;
+    } else {
+        buttonTwoClicked = true;
+        buttonCheck();
+        buttonTwoClicked = false;
+    }
+}
+
+function buttonCheck() {
+    if (buttonOneClicked == true) {
+        prefferedSens = lowSens;
+        divideSplit();
+
+    } else if (buttonTwoClicked == true) {
+        prefferedSens = highSens;
+        divideSplit();
+    }
+}
+
+function divideSplit() {
+    newSens = (parseFloat(prefferedSens) + parseFloat(originalSens)) / 2;
+    newSens = Math.round(newSens+'e2')+'e-2';
+    originalSens = newSens;
+    console.log("New Sens:"+ newSens + " From: " + prefferedSens + " + " + originalSens + "/ 2");
+    multiplySplit();
+}
+
+function multiplySplit() {
+    lowMod = (loopCounter * .1) + .5;
+    highMod = (loopCounter * .1) + 1.5;
+    lowSens = newSens * lowMod;
+    highSens = newSens * highMod;
+    loopCounter = loopCounter + 1;
+    
+    updateButton();
+}
+
+function updateButton() {
+    buttonOneText.nodeValue = lowSens;
+    buttonTwoText.nodeValue = highSens;
+}
