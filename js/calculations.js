@@ -3,7 +3,7 @@ function validateInput() {
 
     sensIn = document.getElementById("sensInput").value;
 
-    if (sensIn == "" || sensIn <= 0) {
+    if (isNaN(sensIn) || sensIn == "" || sensIn <= 0) {
         return false;
     } else {
         setup();
