@@ -80,16 +80,24 @@ function buttonCheck() {
 }
 
 function divideSplit() {
-    newSens = (parseFloat(prefferedSens) + parseFloat(originalSens)) / 2;
+    if (loopCounter <= 2) {
+        newSens = (parseFloat(prefferedSens) + parseFloat(originalSens)) / 2;    
+    }   else {
+        newSens = prefferedSens;
+    }
     newSens = Math.round(newSens+'e2')+'e-2';
-    originalSens = newSens;
     console.log("New Sens:"+ newSens + " From: " + prefferedSens + " + " + originalSens + "/ 2");
+    originalSens = newSens;
     multiplySplit();
 }
 
 function multiplySplit() {
+    if (loopCounter < 1){
+        lowSens = newSens * .5;
+        highSens = newSens * .6;       
+    }
     lowMod = (loopCounter * .1) + .5;
-    highMod = (loopCounter * .1) + 1.5;
+    highMod = (loopCounter * -.1) + 1.5;
     lowSens = newSens * lowMod;
     highSens = newSens * highMod;
     loopCounter = loopCounter + 1;
