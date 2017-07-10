@@ -37,6 +37,8 @@ function setup() {
     buttonTwo.appendChild(buttonTwoText);
     resetButton.appendChild(resetButtonText);
 
+    buttonOne.className = "btn btn-secondary active";
+    buttonTwo.className = "btn btn-secondary active";
     resetButton.className = "btn btn-secondary active";
     document.getElementById("infoUpdate").innerHTML = "Try both of these sensitivites and click the one you prefer.";
     document.getElementById("buttonSpot").appendChild(buttonOne);
