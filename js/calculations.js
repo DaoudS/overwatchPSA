@@ -1,20 +1,12 @@
-var funcCounter = 0;
-
 function validateInput() {
-    var x;
+    var sensIn;
 
-    x = document.getElementById("sensInput").value;
+    sensIn = document.getElementById("sensInput").value;
 
-    if (x == "" || x <= 0) {
+    if (sensIn == "" || sensIn <= 0) {
         return false;
     } else {
-        if (funcCounter == 1) {
-            return false;
-        } else {
-            funcCounter = 1;
-            setup();
-            
-        }
+        setup();
     }
 }
 
