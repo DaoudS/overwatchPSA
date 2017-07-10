@@ -23,7 +23,8 @@ function setup() {
 
     lowSens = originalSens * .5;
     highSens = originalSens * 1.5;
-resetButton = document.createElement("BUTTON");
+
+    resetButton = document.createElement("BUTTON");
     buttonOne = document.createElement("BUTTON");
     buttonTwo = document.createElement("BUTTON");
    
@@ -37,7 +38,7 @@ resetButton = document.createElement("BUTTON");
     resetButton.appendChild(resetButtonText);
 
     resetButton.className = "btn btn-secondary active";
-
+    document.getElementById("infoUpdate").innerHTML = "Try both of these sensitivites and click the one you prefer.";
     document.getElementById("buttonSpot").appendChild(buttonOne);
     document.getElementById("buttonSpot").appendChild(buttonTwo);
 
@@ -138,5 +139,6 @@ function reset(){
     document.getElementById("sensFinal").innerHTML = "";
     document.getElementById("buttonSpot").innerHTML = "";
     document.getElementById("inputGroup1").innerHTML = "";
+    document.getElementById("infoUpdate").innerHTML = "";
     setupDone = 0;
 }
