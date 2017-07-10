@@ -1,3 +1,5 @@
+var setupDone = 0;
+
 function validateInput() {
     var sensIn;
 
@@ -6,7 +8,10 @@ function validateInput() {
     if (isNaN(sensIn) || sensIn == "" || sensIn <= 0) {
         return false;
     } else {
-        setup();
+        if (setupDone == 1){
+        } else {
+            setup();
+        }
     }
 }
 
@@ -18,21 +23,34 @@ function setup() {
 
     lowSens = originalSens * .5;
     highSens = originalSens * 1.5;
-
+resetButton = document.createElement("BUTTON");
     buttonOne = document.createElement("BUTTON");
     buttonTwo = document.createElement("BUTTON");
+   
 
     buttonOneText = document.createTextNode(lowSens);
     buttonTwoText = document.createTextNode(highSens);
+    resetButtonText = document.createTextNode("Reset");
 
     buttonOne.appendChild(buttonOneText);
     buttonTwo.appendChild(buttonTwoText);
+    resetButton.appendChild(resetButtonText);
+
+    resetButton.className = "btn btn-secondary active";
 
     document.getElementById("buttonSpot").appendChild(buttonOne);
     document.getElementById("buttonSpot").appendChild(buttonTwo);
 
-    onClickCheck();
-    
+    if (setupDone == 0){
+        document.getElementById("inputGroup1").appendChild(resetButton);
+        resetButton.onclick = reset;    
+    }
+    else
+    {
+
+    }
+    setupDone = 1;    
+    onClickCheck();    
 }
 
 function onClickCheck() {
@@ -88,7 +106,7 @@ function divideSplit() {
         newSens = prefferedSens;
     }
     newSens = Math.round(newSens * 100) / 100;
-    console.log("New Sens:"+ newSens + " From: " + prefferedSens + " + " + originalSens + "/ 2");
+    //console.log("New Sens:"+ newSens + " From: " + prefferedSens + " + " + originalSens + "/ 2");
     originalSens = newSens;
     multiplySplit();
 }
@@ -114,4 +132,11 @@ function updateButton() {
 
 function displayFinal(){
     document.getElementById("sensFinal").innerHTML ="Your perfect sensitivty is: " + Math.round(prefferedSens * 100) / 100;
+}
+
+function reset(){
+    document.getElementById("sensFinal").innerHTML = "";
+    document.getElementById("buttonSpot").innerHTML = "";
+    document.getElementById("inputGroup1").innerHTML = "";
+    setupDone = 0;
 }
