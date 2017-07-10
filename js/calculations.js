@@ -58,7 +58,8 @@ function buttonOneClickCheck() {
             buttonOneClicked = false;
         }        
     } else {
-        prefferedSens = low Sens;
+        prefferedSens = lowSens;
+        displayFinal();
     }
 }
 
@@ -73,6 +74,7 @@ function buttonTwoClickCheck() {
         }   
     } else {
         prefferedSens = highSens;
+        displayFinal();
     }
 }
 
@@ -93,7 +95,7 @@ function divideSplit() {
     }   else {
         newSens = prefferedSens;
     }
-    newSens = Math.round(newSens+'e2')+'e-2';
+    newSens = Math.round(newSens * 100) / 100;
     console.log("New Sens:"+ newSens + " From: " + prefferedSens + " + " + originalSens + "/ 2");
     originalSens = newSens;
     multiplySplit();
@@ -114,6 +116,10 @@ function multiplySplit() {
 }
 
 function updateButton() {
-    buttonOneText.nodeValue = lowSens;
-    buttonTwoText.nodeValue = highSens;
+    buttonOneText.nodeValue = Math.round(lowSens * 100) / 100;;
+    buttonTwoText.nodeValue = Math.round(highSens * 100) / 100;;
+}
+
+function displayFinal(){
+    document.getElementById("sensFinal").innerHTML ="Your perfect sensitivty is: " + Math.round(prefferedSens * 100) / 100;
 }
