@@ -49,22 +49,30 @@ function onClickCheck() {
     buttonTwo.onclick = buttonTwoClickCheck; 
 }
 function buttonOneClickCheck() {
-    if (buttonTwoClicked == true){
-        return false;
+    if (loopCounter < 5){
+        if (buttonTwoClicked == true){
+            return false;
+        } else {
+            buttonOneClicked = true;
+            buttonCheck();
+            buttonOneClicked = false;
+        }        
     } else {
-        buttonOneClicked = true;
-        buttonCheck();
-        buttonOneClicked = false;
+        prefferedSens = low Sens;
     }
 }
 
 function buttonTwoClickCheck() {
-    if (buttonOneClicked == true) {
-        return false;
+    if (loopCounter < 5){
+        if (buttonOneClicked == true) {
+            return false;
+        } else {
+            buttonTwoClicked = true;
+            buttonCheck();
+            buttonTwoClicked = false;
+        }   
     } else {
-        buttonTwoClicked = true;
-        buttonCheck();
-        buttonTwoClicked = false;
+        prefferedSens = highSens;
     }
 }
 
