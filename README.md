@@ -1,3 +1,3 @@
 # overwatchPSA
 
-https://daouds.github.io/overwatchPSA/
+https://daouds.github.io/overwatchpsa/
